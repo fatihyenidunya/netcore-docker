@@ -1,0 +1,22 @@
+language: csharp
+dist: trusty
+sudo: required
+mono: none
+dotnet: 2.1.502
+branches:
+  only:
+    - master
+script: true
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-test-api"
+  env: "DockerTestApi-env"
+  bucket_name: "elasticbeanstalk-us-east-1-179170897429"
+  bucket_path: "docker-test-api"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
